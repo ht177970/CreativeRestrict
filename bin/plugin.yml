@@ -1,0 +1,28 @@
+name: CreativeRestrict
+main: creative.dru.org.Main
+version: 1.2
+description: "restrict creative mode"
+author: [Dru_TNT, RyanTom_RT]
+api-version: 1.13
+softdepend: [CMI]
+
+commands:  
+  小胖:
+    description: "msg shiunchen come here"
+permissions:
+  creative.res.dropitem:
+    description: "whether can drop item on cretive mode"
+    default: op
+  creative.res.show.gamemode.broadcast:
+    description: "whether be able to see gamemode broadcast"
+    default: op
+  creative.res.bypass.placenondrop:
+    description: "whether do blocks which player place on creative will drop block or not"
+    default: op
+  creative.res.bypass.invrecovery:
+    description: "whether don't inventroy recovery when switch back to survival"
+    default: op
+  creative.res.usespitem:
+    description: "whether can place lava and water, spawner eggs or fire on creative mode"
+    default: op
+  
