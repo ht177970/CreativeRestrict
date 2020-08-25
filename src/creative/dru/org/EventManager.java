@@ -8,6 +8,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Container;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -62,14 +64,23 @@ public class EventManager implements Listener {
 		}
 	}
 	
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInteract(PlayerInteractEvent e) {
-		if(e.getItem()==null) return;
 		Player p = e.getPlayer();
+		if(e.getClickedBlock()!=null) { 
+			if(e.getClickedBlock().getState() instanceof Container&&!p.hasPermission("creative.res.opencontainer")) {
+				e.setCancelled(true);
+				p.sendMessage(DataManager.Config.getString("open_container"));
+				return;
+			}
+			
+		}
 		
+		if(e.getItem()==null) return;
 		if(!p.hasPermission("creative.res.usespitem")&&p.getGameMode().equals(GameMode.CREATIVE)) {
 			if(!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
-			
+
 			if(e.getItem().getType().toString().contains("SPAWN_EGG")) {
 				p.sendMessage(DataManager.Config.getString("place_spawn_egg"));
 				e.setCancelled(true);
@@ -78,8 +89,10 @@ public class EventManager implements Listener {
 			if(Main.w != null)
 				e.setCancelled(Main.w.onInteract(e.getItem().getType(), p));
 		}
+			
+		
 	}
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onChangeMode(PlayerGameModeChangeEvent e) {
 		Player p = e.getPlayer();
 		if(!p.hasPermission("cmi.command.gm.*")) {
@@ -116,13 +129,13 @@ public class EventManager implements Listener {
 	public static String TranslateGameMode(GameMode e) {
 		switch(e) {
 		case ADVENTURE:
-			return ChatColor.GOLD+ "玙繧家Α";
+			return ChatColor.GOLD+ "adventure mode";
 		case CREATIVE:
-			return ChatColor.RED+ "承硑家Α";
+			return ChatColor.RED+ "creative mode";
 		case SPECTATOR:
-			return ChatColor.GRAY+ "芠家Α";
+			return ChatColor.GRAY+ "spectator mode";
 		case SURVIVAL:
-			return ChatColor.GREEN+ "ネ家Α";
+			return ChatColor.GREEN+ "survival mode";
 		}
 		return null;
 	}
