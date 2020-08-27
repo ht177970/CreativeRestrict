@@ -1,6 +1,8 @@
 package creative.dru.org.v;
 
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 
 import creative.dru.org.DataManager;
@@ -24,6 +26,13 @@ public class WORK_v13 implements WORK{
 		default:
 			break;
 		}
+		return false;
+	}
+	
+	@Override
+	public boolean onInteract(BlockState bs) {
+		if(bs instanceof Container)
+			return true;
 		return false;
 	}
 }

@@ -8,8 +8,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Container;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,7 +28,7 @@ public class EventManager implements Listener {
 	@EventHandler
 	public void dropItem(PlayerDropItemEvent e) {
 		if(!e.getPlayer().hasPermission("creative.res.dropitem")&&e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
-			e.getPlayer().sendMessage(DataManager.Config.getString("can_not_drop_item"));
+			e.getPlayer().sendMessage(DataManager.lang.getString("can_not_drop_item"));
 			e.setCancelled(true);	
 		}
 		
@@ -69,9 +67,10 @@ public class EventManager implements Listener {
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		if(e.getClickedBlock()!=null) { 
-			if(e.getClickedBlock().getState() instanceof Container&&!p.hasPermission("creative.res.opencontainer")) {
+			if(p.getGameMode().equals(GameMode.CREATIVE)&&Main.w.onInteract(e.getClickedBlock().getState())&&!p.hasPermission("creative.res.opencontainer")) {
 				e.setCancelled(true);
-				p.sendMessage(DataManager.Config.getString("open_container"));
+				
+				p.sendMessage(DataManager.lang.getString("open_container"));
 				return;
 			}
 			
@@ -82,7 +81,7 @@ public class EventManager implements Listener {
 			if(!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
 
 			if(e.getItem().getType().toString().contains("SPAWN_EGG")) {
-				p.sendMessage(DataManager.Config.getString("place_spawn_egg"));
+				p.sendMessage(DataManager.lang.getString("place_spawn_egg"));
 				e.setCancelled(true);
 				return;
 			}
@@ -97,7 +96,7 @@ public class EventManager implements Listener {
 		Player p = e.getPlayer();
 		if(!p.hasPermission("cmi.command.gm.*")) {
 			String str = null;
-			str = DataManager.Config.getString("chanage_gamemode_broadcast").replace("{player}", e.getPlayer().getDisplayName() == null ? e.getPlayer().getName() : e.getPlayer().getDisplayName());
+			str = DataManager.lang.getString("chanage_gamemode_broadcast").replace("{player}", e.getPlayer().getDisplayName() == null ? e.getPlayer().getName() : e.getPlayer().getDisplayName());
 			
 			Bukkit.broadcast(str.replace("{gamemode}", TranslateGameMode(e.getNewGameMode())), "creative.res.show.gamemode.broadcast");
 			

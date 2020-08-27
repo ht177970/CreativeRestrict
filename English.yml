@@ -1,0 +1,8 @@
+can_not_drop_item: §cYou don't have enough permission to drop item(s) on creative mode!
+place_liquid: §cYou don't have enoguh permission to place liquid on creative mode!
+place_fire: §cYou don't have enough permission to use fire on creative mode!
+place_spawn_egg: §cYou don't have enough permission to use eggs on creative mode!
+place_block: §cYou don't have enough permission to place this block on creative mode!
+place_item: §cYou don't habe enough permission to use this item!
+open_container: §fYou don't have enough permission to open container on creative mode!
+chanage_gamemode_broadcast: §f{player} has chanage to {gamemode} mode!

@@ -1,6 +1,8 @@
 package creative.dru.org.v;
 
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Lockable;
 import org.bukkit.entity.Player;
 
 import creative.dru.org.DataManager;
@@ -34,6 +36,13 @@ public class WORK_v11 implements WORK{
 				}
 				break;
 		}
+		return false;
+	}
+	
+	@Override
+	public boolean onInteract(BlockState bs) {
+		if(bs instanceof Lockable)
+			return true;
 		return false;
 	}
 }

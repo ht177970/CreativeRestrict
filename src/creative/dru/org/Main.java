@@ -31,7 +31,7 @@ public class Main extends JavaPlugin {
 			w = new WORK_v13();
 		else
 			getLogger().severe("unsupport version.");
-		getCommand("¤p­D").setExecutor(new Commands());
+//		getCommand("¤p­D").setExecutor(new Commands());
 		Bukkit.getPluginManager().registerEvents(new EventManager(), this);
 		
 	}

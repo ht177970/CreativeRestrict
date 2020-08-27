@@ -54,7 +54,6 @@ public class FileManager {
 		for(Vector v: locs.get(w.getName())) {
 			BufferedWriter fw = null;
 			try {
-				
 				File file = new File(w.getWorldFolder().getPath()+"/creativeAir");
 				if(file.exists()) file.delete();
 				file.createNewFile();
