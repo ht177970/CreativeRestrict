@@ -2,7 +2,7 @@ can_not_drop_item: §c你沒有足夠權限在創造模式下丟東西!
 place_liquid: §c你沒有足夠權限在創造模式下放置液體!
 place_fire: §c你沒有足夠權限在創造模式下放火!
 place_spawn_egg: §c你沒有足夠權限在創造模式下使用生怪蛋!
-place_block: §c你沒有足夠權限在創造模式下'放置此方塊!
-place_item: §c你沒有足夠權限在創造模式下'放置此物品!
-open_container: §f你沒有足夠權限在創造模式下'開啟容器!
+place_block: §c你沒有足夠權限在創造模式下放置此方塊!
+place_item: §c你沒有足夠權限在創造模式下放置此物品!
+open_container: §f你沒有足夠權限在創造模式下開啟容器!
 chanage_gamemode_broadcast: §f{player} 已將遊戲模式切換為 {gamemode}!
